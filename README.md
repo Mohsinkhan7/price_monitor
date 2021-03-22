@@ -6,13 +6,16 @@ This project is built in **Java 14** using **Spring Boot**. In addition to these
 ## Unit Test Cases
 
 Unit test cases can be executed using maven command
- **mvn test**
+**mvn test**
 
 ## Execution 
 
 Program can be executed via command line with following commands
+
 **./mvnw spring-boot:run**
+
 **java -jar price_monitor-0.0.1-SNAPSHOT.jar**
+
 Jar is also placed in the Jar folder in the same repository.
 
 
