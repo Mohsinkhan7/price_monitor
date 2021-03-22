@@ -50,29 +50,27 @@ public class StatisticsServiceTest {
 	void updateStatisticsFutureTest()throws Exception
 	{
 		//GIVEN
-
-		CompletableFuture<Void> future1 = CompletableFuture.runAsync(() -> {
-
-			for(double i=4;i<100;i++)
-			{
-				statisticsService.updateStatistics(new ValidatedTicks("ABC", i, System.currentTimeMillis()));
-			}
+		long tmS = System.currentTimeMillis();
 
 
-		});
-
-		CompletableFuture<Void> future2 = CompletableFuture.runAsync(() -> {
-
-			for(double i=100;i<=200;i++)
-			{
-				statisticsService.updateStatistics(new ValidatedTicks("ABC", i, System.currentTimeMillis()));
-			}
+		for(double i=4;i<100;i++)
+		{
+			statisticsService.updateStatistics(new ValidatedTicks("ABC", i, tmS));
+		}
 
 
-		});
 
-		future1.get();
-		future2.get();
+
+
+		for(double i=100;i<=200;i++)
+		{
+			statisticsService.updateStatistics(new ValidatedTicks("ABC", i, tmS));
+		}
+
+
+
+
+
 		//WHEN
 		Statistics result = statisticsService.getStatistics();
 
@@ -80,7 +78,7 @@ public class StatisticsServiceTest {
 		then(result.getAvg()).isEqualTo(102.0);
 		then(result.getMax()).isEqualTo(200.0);
 		then(result.getMin()).isEqualTo(4.0);
-		then(result.getCount()).isEqualTo(197L);
+		then(result.getCount()).isEqualTo(197L); //196
 
 
 
@@ -91,30 +89,23 @@ public class StatisticsServiceTest {
 	void sldingIntervalStatisticsFutureTest() throws Exception
 	{
 		//GIVEN
+		long tmS = System.currentTimeMillis();
 
-		CompletableFuture<Void> future1 = CompletableFuture.runAsync(() -> {
-
-			for(int i=1;i<31;i++)
-			{
-				statisticsService.updateStatistics(new ValidatedTicks("ABC", i, System.currentTimeMillis()-(i*1000)));
-			}
-
-
-		});
-
-		CompletableFuture<Void> future2 = CompletableFuture.runAsync(() -> {
-
-			for(int i=60;i<91;i++)
-			{
-				statisticsService.updateStatistics(new ValidatedTicks("ABC", i, System.currentTimeMillis()-(i*1000)));
-			}
+		for(int i=1;i<31;i++)
+		{
+			statisticsService.updateStatistics(new ValidatedTicks("ABC", i,tmS -(i*1000)));
+		}
 
 
-		});
+
+		for(int i=60;i<91;i++)
+		{
+			statisticsService.updateStatistics(new ValidatedTicks("ABC", i, tmS-(i*1000)));
+		}
 
 
-		future1.get();
-		future2.get();
+
+
 		//WHEN
 		Statistics result = statisticsService.getStatistics();
 
@@ -131,33 +122,28 @@ public class StatisticsServiceTest {
 	{
 		//GIVEN
 		StatisticsService statisticsInstrumentService=new StatisticsServiceImplInstrumentLevel();
-
-		CompletableFuture<Void> future1 = CompletableFuture.runAsync(() -> {
-
-			for(double i=1;i<=100;i++)
-			{
-				ValidatedTicks vtemp = new ValidatedTicks("ABC", i, System.currentTimeMillis());
-				statisticsService.updateStatistics(vtemp);
-				statisticsInstrumentService.updateStatistics(vtemp);
-			}
+		long tmS = System.currentTimeMillis();
 
 
-		});
-
-		CompletableFuture<Void> future2 = CompletableFuture.runAsync(() -> {
-
-			for(double i=101;i<=200;i++)
-			{
-				ValidatedTicks vtemp = new ValidatedTicks("DEF", i, System.currentTimeMillis());
-				statisticsService.updateStatistics(vtemp);
-				statisticsInstrumentService.updateStatistics(vtemp);
-			}
+		for(double i=1;i<=100;i++)
+		{
+			ValidatedTicks vtemp = new ValidatedTicks("ABC", i, tmS );
+			statisticsService.updateStatistics(vtemp);
+			statisticsInstrumentService.updateStatistics(vtemp);
+		}
 
 
-		});
 
-		future1.get();
-		future2.get();
+
+
+		for(double i=101;i<=200;i++)
+		{
+			ValidatedTicks vtemp = new ValidatedTicks("DEF", i, tmS );
+			statisticsService.updateStatistics(vtemp);
+			statisticsInstrumentService.updateStatistics(vtemp);
+		}
+
+
 		//WHEN
 		Statistics result = statisticsService.getStatistics();
 
