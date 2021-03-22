@@ -1,0 +1,13 @@
+org\codechallenge\pricemonitor\RealTimeTestingByScheduler.class
+org\codechallenge\pricemonitor\statistics\StatisticsServiceImplAggregated.class
+org\codechallenge\pricemonitor\statistics\StatisticsServiceImplInstrumentLevel.class
+org\codechallenge\pricemonitor\ticks\TicksController.class
+org\codechallenge\pricemonitor\ticks\TicksService.class
+org\codechallenge\pricemonitor\ticks\TicksServiceImpl.class
+org\codechallenge\pricemonitor\ticks\Ticks.class
+org\codechallenge\pricemonitor\PriceMonitorApplication.class
+org\codechallenge\pricemonitor\statistics\Statistics.class
+org\codechallenge\pricemonitor\ticks\ValidatedTicks.class
+org\codechallenge\pricemonitor\statistics\StatisticsServiceImpl.class
+org\codechallenge\pricemonitor\statistics\StatisticsController.class
+org\codechallenge\pricemonitor\statistics\StatisticsService.class
