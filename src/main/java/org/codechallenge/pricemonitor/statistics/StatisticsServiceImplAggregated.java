@@ -62,7 +62,7 @@ public class StatisticsServiceImplAggregated extends StatisticsServiceImpl {
 
 		final long currentSeconds = System.currentTimeMillis()/1000;
 
-		log.info("Agg Garbage Collector at {}: Removing Previous Keys: ",currentSeconds);
+		log.info("Aggregated Garbage Collector executed at {} unix seconds",currentSeconds);
 
 		CompletableFuture<Void> future2 = CompletableFuture.runAsync(() -> {
 			for(int i=1;i<=slidingIntervalInSeconds;i++)

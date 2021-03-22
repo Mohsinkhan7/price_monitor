@@ -18,13 +18,13 @@ import org.springframework.stereotype.Component;
  * @author Mohsin Khan
  */
 
-@Component
+//@Component
 public class RealTimeTestingByScheduler {
 
 	long priceIncrement=10; //Sample Price Variable, Random can be used while simple provides more in-depth undertanding
 
-	@Scheduled(fixedRate = 25000)
-	@DependsOn({"TicksController"})
+	//@Scheduled(fixedRate = 25000)
+	//@DependsOn({"TicksController"})
 	public void fixedRateSchedulingPostTesting() throws IOException { 
 
 		priceIncrement+=10;
@@ -48,8 +48,8 @@ public class RealTimeTestingByScheduler {
 
 	}
 
-	@Scheduled(fixedRate = 10000)
-	@DependsOn({"StatisticsController"})
+	//@Scheduled(fixedRate = 10000)
+	//@DependsOn({"StatisticsController"})
 	public void fixedRateSchedulingGetTesting() throws IOException { 
 		URL obj2 = new URL("http://localhost:8080/statistics");
 		HttpURLConnection postConnection2 = (HttpURLConnection) obj2.openConnection();
